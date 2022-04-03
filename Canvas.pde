@@ -1,7 +1,21 @@
 //Instantiating the arrayList which holds arrays of ints
 //Each array is 1x3 and holds the x,y coordinates and stroke id for each pixel drawn
-ArrayList<int[]> points = new ArrayList<int[]>();
+ArrayList<double[]> points = new ArrayList<double[]>();
 int strokeID = 0;
+class cloud {
+  String name;
+  ArrayList<double[]> cloud = new ArrayList<double[]>();
+  int sub;
+  String gesture;
+  public cloud(String n, ArrayList<double[]> unis, int num) {
+    name = n;
+    sub = num;
+    gesture = name.substring(0,name.length()-2);
+    for(int i = 0; i < unis.size(); i++)
+      cloud.add(unis.get(i));
+  }
+}
+ArrayList<cloud> templates = new ArrayList<cloud>();
 
 //Function called at the start of the progra, creates the canvas of size 1280x720
 void setup(){
@@ -41,7 +55,7 @@ void mousePressed(){
    //The x and y coordinates are stored of the mouse are stored and this array
    //Is added to the arrayLsit
    strokeID++;
-   int[] a = new int[3];
+   double[] a = new double[3];
    a[0] = mouseX;
    a[1] = mouseY;
    a[2] = strokeID;
@@ -54,7 +68,7 @@ void mousePressed(){
 //Dragged over the mouse button, it only clears the canvas if the button is clicked
 void mouseDragged(){
    if(!(mouseX >10 && mouseX < 90 && mouseY > 10 && mouseY < 70)){
-   int[] a = new int[3];
+   double[] a = new double[3];
    a[0] = mouseX;
    a[1] = mouseY;
    a[2] = strokeID;
