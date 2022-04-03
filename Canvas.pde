@@ -1,6 +1,8 @@
 //Instantiating the arrayList which holds arrays of ints
-//Each array is 1x2 and holds the x and y coordinates for each pixel drawn
+//Each array is 1x3 and holds the x,y coordinates and stroke id for each pixel drawn
 ArrayList<int[]> points = new ArrayList<int[]>();
+int strokeID = 0;
+
 //Function called at the start of the progra, creates the canvas of size 1280x720
 void setup(){
   size(1280,720);
@@ -32,14 +34,17 @@ void mousePressed(){
    if(mouseX >10 && mouseX < 90 && mouseY > 10 && mouseY < 70){
      //If it was over the button it empties the arrayList
      points.removeAll(points);
+     strokeID = 0;
    }
    else{
    //If it wasn't over the button then a new array of size 2 is created, within it
    //The x and y coordinates are stored of the mouse are stored and this array
    //Is added to the arrayLsit
-   int[] a = new int[2];
+   strokeID++;
+   int[] a = new int[3];
    a[0] = mouseX;
    a[1] = mouseY;
+   a[2] = strokeID;
    points.add(a);
    }
 }
@@ -49,9 +54,10 @@ void mousePressed(){
 //Dragged over the mouse button, it only clears the canvas if the button is clicked
 void mouseDragged(){
    if(!(mouseX >10 && mouseX < 90 && mouseY > 10 && mouseY < 70)){
-   int[] a = new int[2];
+   int[] a = new int[3];
    a[0] = mouseX;
    a[1] = mouseY;
+   a[2] = strokeID;
    points.add(a);  
    }
 }
