@@ -1,7 +1,7 @@
 //Instantiating the arrayList which holds arrays of ints
 //Each array is 1x3 and holds the x,y coordinates and stroke id for each pixel drawn
 ArrayList<double[]> points = new ArrayList<double[]>();
-int strokeID = 0;
+int strokeID = 1;
 class cloud {
   String name;
   ArrayList<double[]> cloud = new ArrayList<double[]>();
@@ -29,6 +29,7 @@ void draw(){
   background(255);
   //Calls the draw button function creating a button that clears the canvas
   drawButton(10, 10, 80, 60, "Clear");
+  drawButton(1140, 10, 130, 60, "Recognize");
   //Changes the color being drawn to green
   fill(0,255,0);
   //Loop that goes through the arrayList of pixels drawing a circle with a 1 pixel
@@ -37,7 +38,7 @@ void draw(){
     strokeWeight(0);
     //Circle is called passing in the x and y coordinates drawing a circle of radius
     //1 at the location
-    circle(points.get(i)[0],points.get(i)[1], 1.0);
+    circle((float)points.get(i)[0],(float)points.get(i)[1], 1.0);
   }
 }
 
@@ -50,17 +51,26 @@ void mousePressed(){
      points.removeAll(points);
      strokeID = 0;
    }
+   else if (mouseX > 1140 && mouseX < 1270 && mouseY > 10 && mouseY < 70){
+     pRecognizer();
+     strokeID = 0;
+   }
    else{
    //If it wasn't over the button then a new array of size 2 is created, within it
    //The x and y coordinates are stored of the mouse are stored and this array
    //Is added to the arrayLsit
-   strokeID++;
+   //strokeID++;
    double[] a = new double[3];
    a[0] = mouseX;
    a[1] = mouseY;
    a[2] = strokeID;
+   System.out.println(strokeID);
    points.add(a);
    }
+}
+
+void mouseReleased() { 
+  strokeID++;
 }
 
 //This function is called when the mouse is dragged, it has the same functionality
@@ -96,4 +106,3 @@ void drawButton(int x, int y, int wid, int hei, String text) {
   //Draws the text to the window with the passed in text, x, y, width and height
   text(text, x + (wid / 2), y + (hei / 2));
 }
-  

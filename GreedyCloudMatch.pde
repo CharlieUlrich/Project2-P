@@ -17,7 +17,7 @@ double cloudDistance(ArrayList<double[]>pts, ArrayList<double[]> template, int n
   do{
     double min = Double.MAX_VALUE;
     double d;
-    int index;
+    int index = 0;
     for(int j = 0; j < n; j++){
       if(!matched[j]){
         d = euclideanDistance(pts.get(i),template.get(j));

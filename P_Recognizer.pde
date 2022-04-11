@@ -16,8 +16,8 @@ Result pRecognizer(){
 }
 
 ArrayList<double[]> normalizer(ArrayList<double[]> pts,int n){
-  resample(n);
-  scale();
+  pts = Resample(pts,n);
+  scale(pts);
   transToOrigin(pts,n);
   return pts;
 }

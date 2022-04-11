@@ -1,11 +1,11 @@
 ArrayList<double[]> Resample(ArrayList<double[]> pts, int n) {
   
-  int I = pathLength(pts)/(n-1);
-  int D = 0;
+  double I = pathLength(pts)/(n-1);
+  double D = 0;
   ArrayList<double[]> newPoints = new ArrayList<double[]>();
-  newPoints.add(pts.get(0));
+  //newPoints.add(pts.get(0));
   
-  for (int i = 0; i <= 1; i++) {
+  for (int i = 1; i < pts.size(); i++) {
     if (pts.get(i)[2] == pts.get(i-1)[2]) {
       double d = euclideanDistance(pts.get(i-1),pts.get(i));
       if ((D + d) >= I) {
@@ -17,7 +17,7 @@ ArrayList<double[]> Resample(ArrayList<double[]> pts, int n) {
         pts.add(i,q);
         D = 0;
       }
-      else D = D + d;
+      else D = (D + d);
     }
   }
   return newPoints;
