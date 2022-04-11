@@ -37,7 +37,7 @@ void draw(){
     strokeWeight(0);
     //Circle is called passing in the x and y coordinates drawing a circle of radius
     //1 at the location
-    circle(points.get(i)[0],points.get(i)[1], 1);
+    circle(points.get(i)[0],points.get(i)[1], 1.0);
   }
 }
 
