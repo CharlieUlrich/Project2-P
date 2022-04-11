@@ -2,6 +2,7 @@
 //Each array is 1x3 and holds the x,y coordinates and stroke id for each pixel drawn
 ArrayList<double[]> points = new ArrayList<double[]>();
 int strokeID = 1;
+Result curr=null;
 class cloud {
   String name;
   ArrayList<double[]> cloud = new ArrayList<double[]>();
@@ -15,14 +16,13 @@ class cloud {
       cloud.add(unis.get(i));
   }
 }
-
 ArrayList<cloud> templates = new ArrayList<cloud>();
 ArrayList<double[]> temps = new ArrayList<double[]>();
 
 //Function called at the start of the progra, creates the canvas of size 1280x720
 void setup(){
   size(1280,720);
-temps.add(new double[] {30,7,1}); temps.add(new double[] {103,7,1});temps.add(new double[] {66,7,2});temps.add(new double[] {66,87,2});
+  temps.add(new double[] {30,7,1}); temps.add(new double[] {103,7,1});temps.add(new double[] {66,7,2});temps.add(new double[] {66,87,2});
 cloud T = new cloud("T", temps, 0);
 templates.add(T);
 temps.clear();
@@ -119,6 +119,12 @@ void draw(){
   //Calls the draw button function creating a button that clears the canvas
   drawButton(10, 10, 80, 60, "Clear");
   drawButton(1140, 10, 130, 60, "Recognize");
+  String recog = "";
+  if(curr!=null)
+    recog="Shape Drawn: " + curr.res.name + " Accuracy: " + curr.score;
+  else
+    recog = "Shape Drawn: ";  
+  drawButton(10,660,1260,60,recog);
   //Changes the color being drawn to green
   fill(0,255,0);
   //Loop that goes through the arrayList of pixels drawing a circle with a 1 pixel
@@ -139,9 +145,10 @@ void mousePressed(){
      //If it was over the button it empties the arrayList
      points.removeAll(points);
      strokeID = 0;
+     curr=null;
    }
    else if (mouseX > 1140 && mouseX < 1270 && mouseY > 10 && mouseY < 70){
-     pRecognizer();
+     curr = pRecognizer(); //<>//
      strokeID = 0;
    }
    else{
