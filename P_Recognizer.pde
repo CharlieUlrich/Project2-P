@@ -1,10 +1,13 @@
 Result pRecognizer(){
   int n = 32;
   points = normalizer(points,n);
+  //for(int i = 0; i < 32; i++){
+  //  normd.add(points.get(i));
+  //}
   double score = Double.MAX_VALUE;
   cloud result = null;
   for(cloud template: templates){
-    template.cloud = normalizer(template.cloud,n);
+    //template.cloud = normalizer(template.cloud,n);
     double d = greedyCloudMatch(points,template.cloud,n);
     if (d < score){
       score = d;
