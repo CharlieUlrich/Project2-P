@@ -122,7 +122,7 @@ void draw(){
   drawButton(1140, 10, 130, 60, "Recognize");
   String recog = "";
   if(curr!=null)
-    recog="Shape Drawn: " + curr.res.name + " Accuracy: " + curr.score;
+    recog="Shape Drawn: " + curr.res.name + " Accuracy: " + curr.score; //<>//
   else
     recog = "Shape Drawn: ";  
   drawButton(10,660,1260,60,recog);
@@ -150,7 +150,7 @@ void mousePressed(){
    }
    else if (mouseX > 1140 && mouseX < 1270 && mouseY > 10 && mouseY < 70){
      curr = pRecognizer();
-     strokeID = 0;
+     strokeID = 0; //<>//
    }
    else{
    //If it wasn't over the button then a new array of size 2 is created, within it

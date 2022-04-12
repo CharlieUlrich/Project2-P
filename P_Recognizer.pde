@@ -6,7 +6,7 @@ Result pRecognizer(){
   for(cloud template: templates){
     template.cloud = normalizer(template.cloud,n);
     double d = greedyCloudMatch(points,template.cloud,n);
-    if (d > score){
+    if (d < score){
       score = d;
       result = template;
     }
@@ -23,10 +23,10 @@ ArrayList<double[]> normalizer(ArrayList<double[]> pts,int n){
 }
 
 class Result{
-  cloud res;
+ cloud res;
   double score;
   public Result(cloud n, double s){
-     res = n;
+    res = n;
      score = s;
   }
 }

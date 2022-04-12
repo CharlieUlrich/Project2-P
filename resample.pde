@@ -1,4 +1,4 @@
-ArrayList<double[]> Resample(ArrayList<double[]> pts, int n) {
+ArrayList<double[]> Resample(ArrayList<double[]> pts, int n) { //<>//
   
   double I = pathLength(pts)/(n-1);
   double D = 0;
