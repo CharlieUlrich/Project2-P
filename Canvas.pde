@@ -2,27 +2,28 @@
 //Each array is 1x3 and holds the x,y coordinates and stroke id for each pixel drawn
 ArrayList<double[]> points = new ArrayList<double[]>();
 int strokeID = 1;
-Result curr=null;
 class cloud {
   String name;
   ArrayList<double[]> cloud = new ArrayList<double[]>();
   int sub;
-  String gesture;
+  //String gesture;
   public cloud(String n, ArrayList<double[]> unis, int num) {
     name = n;
     sub = num;
-    gesture = name.substring(0,name.length()-2);
+    //gesture = name.substring(0,name.length()-2);
     for(int i = 0; i < unis.size(); i++)
       cloud.add(unis.get(i));
   }
 }
+
+Result curr = null;
 ArrayList<cloud> templates = new ArrayList<cloud>();
 ArrayList<double[]> temps = new ArrayList<double[]>();
 
 //Function called at the start of the progra, creates the canvas of size 1280x720
 void setup(){
   size(1280,720);
-  temps.add(new double[] {30,7,1}); temps.add(new double[] {103,7,1});temps.add(new double[] {66,7,2});temps.add(new double[] {66,87,2});
+temps.add(new double[] {30,7,1}); temps.add(new double[] {103,7,1});temps.add(new double[] {66,7,2});temps.add(new double[] {66,87,2});
 cloud T = new cloud("T", temps, 0);
 templates.add(T);
 temps.clear();
@@ -145,10 +146,10 @@ void mousePressed(){
      //If it was over the button it empties the arrayList
      points.removeAll(points);
      strokeID = 0;
-     curr=null;
+     curr = null;
    }
    else if (mouseX > 1140 && mouseX < 1270 && mouseY > 10 && mouseY < 70){
-     curr = pRecognizer(); //<>//
+     curr = pRecognizer();
      strokeID = 0;
    }
    else{

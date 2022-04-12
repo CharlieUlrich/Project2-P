@@ -3,7 +3,7 @@ ArrayList<double[]> Resample(ArrayList<double[]> pts, int n) {
   double I = pathLength(pts)/(n-1);
   double D = 0;
   ArrayList<double[]> newPoints = new ArrayList<double[]>();
-  //newPoints.add(pts.get(0));
+  newPoints.add(pts.get(0));
   
   for (int i = 1; i < pts.size(); i++) {
     if (pts.get(i)[2] == pts.get(i-1)[2]) {
@@ -20,6 +20,7 @@ ArrayList<double[]> Resample(ArrayList<double[]> pts, int n) {
       else D = (D + d);
     }
   }
+  if (newPoints.size() == n - 1) newPoints.add(new double[] {pts.get(pts.size()-1)[0], pts.get(pts.size()-1)[1], pts.get(pts.size()-1)[2]});
   return newPoints;
 }
         
