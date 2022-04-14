@@ -1,26 +1,29 @@
 double greedyCloudMatch(ArrayList<double[]> pts, ArrayList<double[]> template, int n){
   double eps = 0.50;
-  int step = (int)Math.pow(n,1-eps);
+  int step = (int)Math.floor(Math.pow(pts.size(),1-eps));
   double min = Double.MAX_VALUE;
-  for(int i = 0; i < n; i+=step){
+  for(int i = 0; i < pts.size(); i+=step){
+    //println("1");
     double d1 = cloudDistance(pts,template,n,i);
-    double d2 = cloudDistance(template,points,n,i);
-    min = min((float)min,(float)d1,(float)d2);
+        //println("2");
+    double d2 = cloudDistance(template,pts,n,i);
+    min = Math.min((float)min,Math.min((float)d1,(float)d2));
   }
   return min;
 }
 
 double cloudDistance(ArrayList<double[]>pts, ArrayList<double[]> template, int n, int start){
   boolean[] matched = new boolean[n];
+  for (int k = 0; k < n; k++) matched[k] = false;
   double sum = 0;
   int i = start;
   do{
     double min = Double.MAX_VALUE;
-    double d;
-    int index = 0;
+    int index = -1;
     for(int j = 0; j < n; j++){
       if(!matched[j]){
-        d = euclideanDistance(pts.get(i),template.get(j));
+        //println(pts.size(), template.size());
+        double d = euclideanDistance(pts.get(i),template.get(j));
         if(d<min){
           min = d;
           index = j;

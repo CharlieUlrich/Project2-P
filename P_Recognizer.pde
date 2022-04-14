@@ -1,19 +1,23 @@
-Result pRecognizer(){
+Result pRecognizer(ArrayList<double[]> pts, ArrayList<cloud> templs){
   int n = 32;
-  points = normalizer(points,n);
-  //for(int i = 0; i < 32; i++){
-  //  normd.add(points.get(i));
-  //}
+  pts = normalizer(pts,n);
   double score = Double.MAX_VALUE;
   cloud result = null;
-  for(cloud template: templates){
+  for(cloud template: templs){
+    //println("yo");
     //template.cloud = normalizer(template.cloud,n);
-    double d = greedyCloudMatch(points,template.cloud,n);
+    //println(pts.size(), template.cloud.size(), template.name);
+    double d = greedyCloudMatch(pts,template.cloud,n);
+    //System.out.println(template.name + " " + d);
     if (d < score){
       score = d;
       result = template;
     }
   }
+  if (1/score>1)
+    score = 1;
+  else
+    score = 1/score;
   Result a = new Result(result,score);
   return a;
 }
@@ -21,7 +25,7 @@ Result pRecognizer(){
 ArrayList<double[]> normalizer(ArrayList<double[]> pts,int n){
   pts = Resample(pts,n);
   scale(pts);
-  transToOrigin(pts,n);
+  transToOrigin(pts, new double[] {0,0,0});
   return pts;
 }
 
