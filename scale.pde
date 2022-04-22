@@ -1,4 +1,4 @@
-void scale(ArrayList<double[]> pts) {
+ArrayList<double[]> scale(ArrayList<double[]> pts) {
   double minX = Integer.MAX_VALUE;
   double minY = Integer.MAX_VALUE;
   double maxX = 0;
@@ -15,4 +15,5 @@ void scale(ArrayList<double[]> pts) {
     pts.get(i)[0] = (pts.get(i)[0] - minX)/scale;
     pts.get(i)[1] = (pts.get(i)[1] - minY)/scale;
   }
+  return pts;
 }

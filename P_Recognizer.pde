@@ -24,8 +24,8 @@ Result pRecognizer(ArrayList<double[]> pts, ArrayList<cloud> templs){
 
 ArrayList<double[]> normalizer(ArrayList<double[]> pts,int n){
   pts = Resample(pts,n);
-  scale(pts);
-  transToOrigin(pts, new double[] {0,0,0});
+  pts = scale(pts);
+  pts = transToOrigin(pts, new double[] {0,0,0});
   return pts;
 }
 
